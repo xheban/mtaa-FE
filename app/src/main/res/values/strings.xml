@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MTAA</string>
+    <string name="vytvorit_novy_ucet">Vytvoriť nový účet</string>
+    <string name="email">Email</string>
+    <string name="pou_vate_sk_meno">Používateľské meno</string>
+    <string name="meno">Meno</string>
+    <string name="priezvisko">Priezvisko</string>
+    <string name="potvrdi_heslo">Potvrdiť heslo</string>
+    <string name="heslo">Heslo</string>
+    <string name="zdajte_pou_vate_sk_meno">Zdajte používateľské meno</string>
+    <string name="zadajte_meno">Zadajte meno</string>
+    <string name="zadajte_priezvisko">Zadajte priezvisko</string>
+    <string name="zadajte_email">Zadajte email</string>
+    <string name="zadajte_heslo">Zadajte heslo</string>
+    <string name="registrova">Registrovať</string>
+</resources>
