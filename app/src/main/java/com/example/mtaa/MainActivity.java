@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    System.out.println("HERE");
                     try {
                         JSONObject res = new JSONObject(response);
                         Toast.makeText(getApplicationContext(), res.getString("response_code"), Toast.LENGTH_LONG).show();
@@ -146,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                    System.out.println(error);
                 }
             }
         );
