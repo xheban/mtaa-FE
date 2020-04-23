@@ -49,7 +49,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/užívateľ"
+                android:id="@+id/userName"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
@@ -59,7 +59,7 @@
                 tools:layout_editor_absoluteY="125dp" />
 
             <EditText
-                android:id="@+id/enter_uname"
+                android:id="@+id/enterUserName"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
                 android:layout_weight="2.5"
@@ -76,7 +76,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/meno"
+                android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -86,7 +86,7 @@
                 tools:layout_editor_absoluteY="195dp" />
 
             <EditText
-                android:id="@+id/enter_name"
+                android:id="@+id/enterName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -103,7 +103,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/priezvisko"
+                android:id="@+id/lastName"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -113,7 +113,7 @@
                 tools:layout_editor_absoluteY="242dp" />
 
             <EditText
-                android:id="@+id/enter_lastname"
+                android:id="@+id/enterLastName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -141,7 +141,7 @@
                 tools:layout_editor_absoluteY="289dp" />
 
             <EditText
-                android:id="@+id/enter_email"
+                android:id="@+id/enterEmail"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -158,7 +158,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/heslo"
+                android:id="@+id/pwd"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -168,7 +168,7 @@
                 tools:layout_editor_absoluteY="339dp" />
 
             <EditText
-                android:id="@+id/enter_pw"
+                android:id="@+id/enterPwd"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -185,7 +185,7 @@
             android:layout_gravity="center">
 
             <TextView
-                android:id="@+id/potvrdenieHeslo"
+                android:id="@+id/confirmPwd"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
@@ -195,7 +195,7 @@
                 tools:layout_editor_absoluteY="384dp" />
 
             <EditText
-                android:id="@+id/enter_pwconfirm"
+                android:id="@+id/enterConfirmPwd"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
@@ -209,7 +209,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/refisterBtn"
+        android:id="@+id/registerBtn"
         android:layout_width="142dp"
         android:layout_height="47dp"
         android:layout_marginTop="20dp"
