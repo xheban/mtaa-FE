@@ -11,13 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -26,7 +23,7 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class Register extends AppCompatActivity implements View.OnClickListener {
 
     private EditText enterUserName, enterName, enterLastName, enterEmail, enterPwd, enterConfirmPwd;
     private Button registerBtn;
@@ -35,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.register);
 
         enterUserName = (EditText) findViewById(R.id.enterUserName);
         enterName = (EditText) findViewById(R.id.enterName);
@@ -99,23 +96,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
-                    public byte[] getBody() throws AuthFailureError {
+                    public byte[] getBody() {
                         return mRequestBody.getBytes(StandardCharsets.UTF_8);
                     }
-
-                    @Override
-                    protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                        String responseString = "";
-                        if (response != null) {
-                            responseString = String.valueOf(response.statusCode);
-                        }
-                        assert response != null;
-                        return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-                    }
                 };
-
-                RequestQueue requestQueue = Volley.newRequestQueue(this);
-                requestQueue.add(stringRequest);
+                RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
 
             }
             catch (JSONException e) {
@@ -155,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view == registerBtn){
-            test();
-//            registerUser();
+//            test();
+            registerUser();
         }
     }
 }
