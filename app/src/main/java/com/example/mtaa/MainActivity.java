@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void registerUser(){
-
         String userName = enterUserName.getText().toString().trim();
         String name = enterName.getText().toString().trim();
         String lastName = enterLastName.getText().toString().trim();
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 JSONObject jsonBody = new JSONObject();
                 jsonBody.put("username", userName);
                 jsonBody.put("name", name);
-                jsonBody.put("lastName", lastName);
+                jsonBody.put("lastname", lastName);
                 jsonBody.put("email", email);
                 jsonBody.put("password", password);
                 final String mRequestBody = jsonBody.toString();
@@ -90,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         public void onErrorResponse(VolleyError error) {
                             progressDialog.hide();
                             Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            System.out.println(error);
                         }
                 }){
                     @Override
@@ -127,10 +127,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    private void test(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constats.GET_ALL_RESTAURANTS_URL,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    System.out.println("HERE");
+                    try {
+                        JSONObject res = new JSONObject(response);
+                        Toast.makeText(getApplicationContext(), res.getString("response_code"), Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        );
+        queue.add(stringRequest);
+    }
+
     @Override
     public void onClick(View view) {
         if(view == registerBtn){
-            registerUser();
+            test();
+//            registerUser();
         }
     }
 }
