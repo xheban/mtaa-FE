@@ -14,9 +14,9 @@ public class Welcome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
 
-        String Name = getIntent().getStringExtra("username");
+        //String Name = getIntent().getStringExtra("username");
         welcomeText = (TextView) findViewById(R.id.welcomeTitle);
 
-        welcomeText.setText("Welcome " + Name);
+        welcomeText.setText("Welcome ");
     }
 }

@@ -118,7 +118,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void toRegister(){
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     private void toForgotPassowrd() {
@@ -129,7 +129,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private void toWelocme(String userName){
             Intent intent = new Intent(this, Welcome.class);
-            intent.putExtra("username",userName);
+            //intent.putExtra("username",userName);
             startActivity(intent);
             finish();
     }

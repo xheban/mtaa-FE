@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -76,6 +77,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             try{
                                 JSONObject res = new JSONObject(response);
                                 Toast.makeText(getApplicationContext(), res.getString("response_code"), Toast.LENGTH_LONG).show();
+                                if(res.getString("response_code").equals("200")) toAfterRegistration();
                             }catch (JSONException e){
                                 e.printStackTrace();
                             }
@@ -135,6 +137,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             }
         );
         queue.add(stringRequest);
+    }
+
+    private void toAfterRegistration(){
+        Intent intent = new Intent(this, AfterRegister.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
