@@ -13,4 +13,13 @@
     <string name="zadajte_email">Zadajte email</string>
     <string name="zadajte_heslo">Zadajte heslo</string>
     <string name="registrova">Registrovať</string>
+    <string name="zabudli_ste_heslo">Zabudli ste heslo?</string>
+    <string name="prihlasit">Prihlásiť</string>
+    <string name="registrácia_tu">Registrovať tu.</string>
+    <string name="uname">Užívateľské meno</string>
+    <string name="obnovenie_hesla">Obnovenie hesla</string>
+    <string name="obnovi">Obnoviť</string>
+    <string name="obnovenie_emailu">Obnovenie emailu</string>
+    <string name="after_reg_title">Ďakujeme \n za vašu \n registráciu</string>
+    <string name="logo">LOGO</string>
 </resources>
