@@ -24,6 +24,7 @@
     <string name="logo">LOGO</string>
     <string name="cart">košík</string>
     <string name="profil">profil</string>
+    <string name="zabudli_ste_email">"Zabudli ste email ? "</string>
     <string name="resturant_photo">resturant photo</string>
     <string name="delivery">Donáška:</string>
     <string name="min_n_kup">Min. nákup:</string>
