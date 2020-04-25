@@ -23,6 +23,9 @@
         <activity android:name=".Register"></activity>
         <activity android:name=".Welcome"></activity>
         <activity android:name=".ResetPassword"></activity>
+<<<<<<< HEAD
+        <activity android:name=".AfterRegister"></activity>
+=======
         <activity android:name=".Profil"></activity>
         <activity android:name=".AfterRegister"></activity>
     </application>

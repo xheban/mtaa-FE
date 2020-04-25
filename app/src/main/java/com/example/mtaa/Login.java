@@ -120,7 +120,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void toRegister(){
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
-        //finish();
+        finish();
     }
 
     private void toForgotPassowrd() {
