@@ -12,4 +12,5 @@ public class GlobalVariables extends Application {
     public void setUserId(Number userId) {
         this.userId = userId;
     }
+
 }

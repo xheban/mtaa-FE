@@ -2,7 +2,6 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -20,42 +19,43 @@
             android:id="@+id/loginField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/uname" />
+            android:nextFocusForward="@+id/passwordField"
+            android:hint="@string/uname"
+            android:autofillHints=""
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/passwordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/loginField"
-            android:hint="@string/heslo" />
+            android:nextFocusForward="@+id/loginField"
+            android:hint="@string/heslo"
+            android:autofillHints=""
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/forgotPasswordTextView"
-            android:layout_centerInParent="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/passwordField"
             android:layout_margin="20dp"
             android:gravity="right"
             android:textColor="#ff0000ff"
             android:textSize="15sp"
-            android:text="@string/zabudli_ste_heslo" />
+            android:text="@string/zabudli_ste_heslo"
+            tools:ignore="RtlHardcoded" />
 
         <Button
             android:id="@+id/LoginBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/loginField"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
             android:text="@string/prihlasit" />
 
         <TextView
             android:id="@+id/registerTextView"
-            android:layout_centerInParent="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/LoginBtn"
             android:layout_margin="40dp"
             android:gravity="center"
             android:textColor="#ff0000ff"

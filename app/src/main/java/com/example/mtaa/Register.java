@@ -10,6 +10,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,11 +36,15 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private EditText enterUserName, enterName, enterLastName, enterEmail, enterPwd, enterConfirmPwd;
     private Button registerBtn;
     private ProgressDialog progressDialog;
+    private String userName, name, lastName, email, password, confirmPassword;
+    private boolean pwdReady,emailReady = false;
+    GlobalVariables globals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+        globals = (GlobalVariables) getApplicationContext();
 
         enterUserName = (EditText) findViewById(R.id.enterUserName);
         enterName = (EditText) findViewById(R.id.enterName);
@@ -49,8 +55,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         registerBtn = (Button) findViewById(R.id.registerBtn);
 
         progressDialog = new ProgressDialog(this);
-
         registerBtn.setOnClickListener(this);
+        registerBtn.setEnabled(false);
 
         enterPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -66,9 +72,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                        if(!enterPwd.getText().toString().trim().equals(enterConfirmPwd.getText().toString().trim())){
                            enterConfirmPwd.setError("Hesla sa nezhodujú");
                            enterConfirmPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                           registerBtn.setEnabled(false);
                        }else{
                            enterConfirmPwd.setError(null);
                            enterConfirmPwd.getBackground().clearColorFilter();
+                           pwdReady = true;
+                           registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && emailReady);
                        }
                    }
                 }
@@ -82,8 +91,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     if(!enterPwd.getText().toString().trim().equals(enterConfirmPwd.getText().toString().trim())){
                         enterConfirmPwd.setError("Hesla sa nezhodujú");
                         enterConfirmPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                        pwdReady = false;
+                        registerBtn.setEnabled(false);
                     }else{
                         enterConfirmPwd.getBackground().clearColorFilter();
+                        pwdReady = true;
+                        registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && emailReady);
                     }
                 }
             }
@@ -99,21 +112,44 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     if(!matcher.matches()){
                         enterEmail.setError("Nesprávny formát emailu ");
                         enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                        emailReady = false;
+                        registerBtn.setEnabled(false);
+
                     }else{
                         enterEmail.getBackground().clearColorFilter();
+                        emailReady = true;
+                        registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && pwdReady);
                     }
                 }
             }
         });
+
+        enterUserName.addTextChangedListener(registerTextWatcher);
+        enterName.addTextChangedListener(registerTextWatcher);
+        enterLastName.addTextChangedListener(registerTextWatcher);
+        enterEmail.addTextChangedListener(registerTextWatcher);
+        enterPwd .addTextChangedListener(registerTextWatcher);
+        enterConfirmPwd.addTextChangedListener(registerTextWatcher);
     }
 
+    private TextWatcher registerTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+             userName = enterUserName.getText().toString().trim();
+             name = enterName.getText().toString().trim();
+             lastName = enterLastName.getText().toString().trim();
+             email = enterEmail.getText().toString().trim();
+             password = enterPwd.getText().toString().trim();
+             confirmPassword = enterConfirmPwd.getText().toString().trim();
+             registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && pwdReady && emailReady);
+        }
+        @Override
+        public void afterTextChanged(Editable s) {}
+    };
+
     private void registerUser(){
-        String userName = enterUserName.getText().toString().trim();
-        String name = enterName.getText().toString().trim();
-        String lastName = enterLastName.getText().toString().trim();
-        String email = enterEmail.getText().toString().trim();
-        String password = enterPwd.getText().toString().trim();
-        String confirmPassword = enterConfirmPwd.getText().toString().trim();
 
         if(password.equals(confirmPassword)){
             progressDialog.setMessage("Registrujem");
@@ -217,6 +253,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private void toAfterRegister(){
         Intent intent = new Intent(this, AfterRegister.class);
+        intent.putExtra("username",userName);
         startActivity(intent);
         finish();
     }
@@ -224,7 +261,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         if(view == registerBtn){
-//            test();
             registerUser();
         }
     }
