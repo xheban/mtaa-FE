@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private void loginUser(){
 
         final String userName = enterUserName.getText().toString().trim();
-        String userPassword = enterPassword.getText().toString().trim();
+        final String userPassword = enterPassword.getText().toString().trim();
 
         if(!userName.isEmpty() && !userPassword.isEmpty()){
             progressDialog.setMessage("Prihlasujem");
@@ -71,12 +71,21 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             @Override
                             public void onResponse(String response) {
                                 progressDialog.dismiss();
+<<<<<<< Updated upstream
                                 try{
                                     JSONObject res = new JSONObject(response);
                                     JSONObject data = res.getJSONObject("response_desc");
                                     //Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
                                     if(res.getString("response_code").equals("200")){
                                         globals.setUserId(data.getInt("id"));
+=======
+                                System.out.println(response);
+                                try{
+                                    JSONObject res = new JSONObject(response);
+                                    //Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
+                                    if(res.getString("response_code").equals("200")){
+                                        System.out.println(res.getString("response_desc"));
+>>>>>>> Stashed changes
                                         toWelocme(userName);
                                     }
                                     else Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();

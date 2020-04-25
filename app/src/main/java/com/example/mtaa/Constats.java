@@ -10,5 +10,6 @@ public class Constats {
     public static final String REGISTER_URL = ROOT_URL+"createUser.php";
     public static final String LOGIN_URL = ROOT_URL+"login.php";
     public static final String GET_ALL_RESTAURANTS_URL = ROOT_URL+"GetAllRestaurants.php";
+    public static final String RESSET_PASSWORD_URL = ROOT_URL+"passwordReset.php";
 
 }
