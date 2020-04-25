@@ -22,4 +22,6 @@
     <string name="obnovenie_emailu">Obnovenie emailu</string>
     <string name="after_reg_title">Ďakujeme \n za vašu \n registráciu</string>
     <string name="logo">LOGO</string>
+    <string name="cart">košík</string>
+    <string name="profil">profil</string>
 </resources>

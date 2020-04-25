@@ -2,8 +2,6 @@ package com.example.mtaa;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,17 +14,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,13 +39,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         setContentView(R.layout.register);
         globals = (GlobalVariables) getApplicationContext();
 
-        enterUserName = (EditText) findViewById(R.id.enterUserName);
-        enterName = (EditText) findViewById(R.id.enterName);
-        enterLastName = (EditText) findViewById(R.id.enterLastName);
-        enterEmail = (EditText) findViewById(R.id.enterEmail);
-        enterPwd = (EditText) findViewById(R.id.enterPwd);
-        enterConfirmPwd = (EditText) findViewById(R.id.enterConfirmPwd);
-        registerBtn = (Button) findViewById(R.id.registerBtn);
+        enterUserName = findViewById(R.id.enterUserName);
+        enterName = findViewById(R.id.enterName);
+        enterLastName = findViewById(R.id.enterLastName);
+        enterEmail = findViewById(R.id.enterEmail);
+        enterPwd = findViewById(R.id.enterPwd);
+        enterConfirmPwd = findViewById(R.id.enterConfirmPwd);
+        registerBtn = findViewById(R.id.registerBtn);
 
         progressDialog = new ProgressDialog(this);
         registerBtn.setOnClickListener(this);
@@ -224,31 +217,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         }
 
 
-    }
-
-    private void test(){
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constats.GET_ALL_RESTAURANTS_URL,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject res = new JSONObject(response);
-                        Toast.makeText(getApplicationContext(), res.getString("response_code"), Toast.LENGTH_LONG).show();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                    System.out.println(error);
-                }
-            }
-        );
-        queue.add(stringRequest);
     }
 
     private void toAfterRegister(){

@@ -10,17 +10,58 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="53dp"
-        android:layout_height="47dp"
-        app:srcCompat="@drawable/cart"
-        tools:layout_editor_absoluteX="267dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="48dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/cart"
+        app:srcCompat="@drawable/cart" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="46dp"
-        android:layout_height="47dp"
-        app:srcCompat="@drawable/user"
-        tools:layout_editor_absoluteX="330dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="39dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile"
+        app:srcCompat="@drawable/user" />
+
+    <TextView
+        android:id="@+id/cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:text="@string/cart"
+        app:layout_constraintEnd_toStartOf="@+id/profile"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/profil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/city_spinner"
+        style="@android:style/Widget.Holo.Light.Spinner"
+        android:layout_width="174dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
