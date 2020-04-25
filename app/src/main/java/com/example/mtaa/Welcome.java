@@ -13,10 +13,8 @@ public class Welcome extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-
         String Name = getIntent().getStringExtra("username");
-        welcomeText = (TextView) findViewById(R.id.welcomeTitle);
 
-        welcomeText.setText("Welcome " + Name);
+
     }
 }
