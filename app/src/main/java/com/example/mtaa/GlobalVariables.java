@@ -9,8 +9,8 @@ public class GlobalVariables extends Application {
     public Number getUserId() {
         return userId;
     }
-
     public void setUserId(Number userId) {
         this.userId = userId;
     }
+
 }

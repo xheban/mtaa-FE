@@ -3,10 +3,15 @@ package com.example.mtaa;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,17 +28,23 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
     private EditText enterUserName, enterName, enterLastName, enterEmail, enterPwd, enterConfirmPwd;
     private Button registerBtn;
     private ProgressDialog progressDialog;
+    private String userName, name, lastName, email, password, confirmPassword;
+    private boolean pwdReady,emailReady = false;
+    GlobalVariables globals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
+        globals = (GlobalVariables) getApplicationContext();
 
         enterUserName = (EditText) findViewById(R.id.enterUserName);
         enterName = (EditText) findViewById(R.id.enterName);
@@ -41,21 +52,104 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         enterEmail = (EditText) findViewById(R.id.enterEmail);
         enterPwd = (EditText) findViewById(R.id.enterPwd);
         enterConfirmPwd = (EditText) findViewById(R.id.enterConfirmPwd);
-
         registerBtn = (Button) findViewById(R.id.registerBtn);
 
         progressDialog = new ProgressDialog(this);
-
         registerBtn.setOnClickListener(this);
+        registerBtn.setEnabled(false);
+
+        enterPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                   if(enterPwd.length() < 6){
+                       enterPwd.setError("Heslo musí obsahovať najmenej 6 znakov");
+                       enterPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                   }else{
+                       enterPwd.getBackground().clearColorFilter();
+                   }
+                   if(enterConfirmPwd.length() > 0){
+                       if(!enterPwd.getText().toString().trim().equals(enterConfirmPwd.getText().toString().trim())){
+                           enterConfirmPwd.setError("Hesla sa nezhodujú");
+                           enterConfirmPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                           registerBtn.setEnabled(false);
+                       }else{
+                           enterConfirmPwd.setError(null);
+                           enterConfirmPwd.getBackground().clearColorFilter();
+                           pwdReady = true;
+                           registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && emailReady);
+                       }
+                   }
+                }
+            }
+        });
+
+        enterConfirmPwd.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!enterPwd.getText().toString().trim().equals(enterConfirmPwd.getText().toString().trim())){
+                        enterConfirmPwd.setError("Hesla sa nezhodujú");
+                        enterConfirmPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                        pwdReady = false;
+                        registerBtn.setEnabled(false);
+                    }else{
+                        enterConfirmPwd.getBackground().clearColorFilter();
+                        pwdReady = true;
+                        registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && emailReady);
+                    }
+                }
+            }
+        });
+
+        enterEmail.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(enterEmail.getText().toString().trim());
+                    if(!matcher.matches()){
+                        enterEmail.setError("Nesprávny formát emailu ");
+                        enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                        emailReady = false;
+                        registerBtn.setEnabled(false);
+
+                    }else{
+                        enterEmail.getBackground().clearColorFilter();
+                        emailReady = true;
+                        registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && pwdReady);
+                    }
+                }
+            }
+        });
+
+        enterUserName.addTextChangedListener(registerTextWatcher);
+        enterName.addTextChangedListener(registerTextWatcher);
+        enterLastName.addTextChangedListener(registerTextWatcher);
+        enterEmail.addTextChangedListener(registerTextWatcher);
+        enterPwd .addTextChangedListener(registerTextWatcher);
+        enterConfirmPwd.addTextChangedListener(registerTextWatcher);
     }
 
+    private TextWatcher registerTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+             userName = enterUserName.getText().toString().trim();
+             name = enterName.getText().toString().trim();
+             lastName = enterLastName.getText().toString().trim();
+             email = enterEmail.getText().toString().trim();
+             password = enterPwd.getText().toString().trim();
+             confirmPassword = enterConfirmPwd.getText().toString().trim();
+             registerBtn.setEnabled(!userName.isEmpty() && !name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !password.isEmpty() && !confirmPassword.isEmpty() && pwdReady && emailReady);
+        }
+        @Override
+        public void afterTextChanged(Editable s) {}
+    };
+
     private void registerUser(){
-        String userName = enterUserName.getText().toString().trim();
-        String name = enterName.getText().toString().trim();
-        String lastName = enterLastName.getText().toString().trim();
-        String email = enterEmail.getText().toString().trim();
-        String password = enterPwd.getText().toString().trim();
-        String confirmPassword = enterConfirmPwd.getText().toString().trim();
 
         if(password.equals(confirmPassword)){
             progressDialog.setMessage("Registrujem");
@@ -76,8 +170,26 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             progressDialog.dismiss();
                             try{
                                 JSONObject res = new JSONObject(response);
-                                Toast.makeText(getApplicationContext(), res.getString("response_code"), Toast.LENGTH_LONG).show();
-                                if(res.getString("response_code").equals("200")) toAfterRegistration();
+                                int response_code = res.getInt("response_code");
+                                if(response_code == 200) {
+                                    toAfterRegister();
+                                }
+                                if(response_code == 400){
+                                    JSONObject data = res.getJSONObject("response_desc");
+                                    if(data.getBoolean("email")){
+                                        enterEmail.setError("Tento email je už používaný");
+                                        enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        enterEmail.getBackground().clearColorFilter();
+                                    }
+
+                                    if(data.getBoolean("username")){
+                                        enterUserName.setError("Toto užívateľské meno je už obsadené");
+                                        enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        enterUserName.getBackground().clearColorFilter();
+                                    }
+                                }
                             }catch (JSONException e){
                                 e.printStackTrace();
                             }
@@ -139,8 +251,9 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         queue.add(stringRequest);
     }
 
-    private void toAfterRegistration(){
+    private void toAfterRegister(){
         Intent intent = new Intent(this, AfterRegister.class);
+        intent.putExtra("username",userName);
         startActivity(intent);
         finish();
     }
@@ -148,7 +261,6 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View view) {
         if(view == registerBtn){
-//            test();
             registerUser();
         }
     }
