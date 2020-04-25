@@ -4,12 +4,12 @@ import android.app.Application;
 
 public class GlobalVariables extends Application {
 
-    private Number userId;
+    private String userId;
 
-    public Number getUserId() {
+    public String getUserId() {
         return userId;
     }
-    public void setUserId(Number userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
