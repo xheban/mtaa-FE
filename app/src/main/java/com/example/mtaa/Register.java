@@ -3,7 +3,11 @@ package com.example.mtaa;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
@@ -40,12 +46,65 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         enterEmail = (EditText) findViewById(R.id.enterEmail);
         enterPwd = (EditText) findViewById(R.id.enterPwd);
         enterConfirmPwd = (EditText) findViewById(R.id.enterConfirmPwd);
-
         registerBtn = (Button) findViewById(R.id.registerBtn);
 
         progressDialog = new ProgressDialog(this);
 
         registerBtn.setOnClickListener(this);
+
+        enterPwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                   if(enterPwd.length() < 6){
+                       enterPwd.setError("Heslo musí obsahovať najmenej 6 znakov");
+                       enterPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                   }else{
+                       enterPwd.getBackground().clearColorFilter();
+                   }
+                   if(enterConfirmPwd.length() > 0){
+                       if(!enterPwd.getText().toString().trim().equals(enterConfirmPwd.getText().toString().trim())){
+                           enterConfirmPwd.setError("Hesla sa nezhodujú");
+                           enterConfirmPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                       }else{
+                           enterConfirmPwd.setError(null);
+                           enterConfirmPwd.getBackground().clearColorFilter();
+                       }
+                   }
+                }
+            }
+        });
+
+        enterConfirmPwd.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    if(!enterPwd.getText().toString().trim().equals(enterConfirmPwd.getText().toString().trim())){
+                        enterConfirmPwd.setError("Hesla sa nezhodujú");
+                        enterConfirmPwd.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                    }else{
+                        enterConfirmPwd.getBackground().clearColorFilter();
+                    }
+                }
+            }
+        });
+
+        enterEmail.setOnFocusChangeListener(new View.OnFocusChangeListener(){
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    String regex = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+                    Pattern pattern = Pattern.compile(regex);
+                    Matcher matcher = pattern.matcher(enterEmail.getText().toString().trim());
+                    if(!matcher.matches()){
+                        enterEmail.setError("Nesprávny formát emailu ");
+                        enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                    }else{
+                        enterEmail.getBackground().clearColorFilter();
+                    }
+                }
+            }
+        });
     }
 
     private void registerUser(){
@@ -75,7 +134,26 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                             progressDialog.dismiss();
                             try{
                                 JSONObject res = new JSONObject(response);
-                                Toast.makeText(getApplicationContext(), res.getString("response_code"), Toast.LENGTH_LONG).show();
+                                int response_code = res.getInt("response_code");
+                                if(response_code == 200) {
+                                    toAfterRegister();
+                                }
+                                if(response_code == 400){
+                                    JSONObject data = res.getJSONObject("response_desc");
+                                    if(data.getBoolean("email")){
+                                        enterEmail.setError("Tento email je už používaný");
+                                        enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        enterEmail.getBackground().clearColorFilter();
+                                    }
+
+                                    if(data.getBoolean("username")){
+                                        enterUserName.setError("Toto užívateľské meno je už obsadené");
+                                        enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        enterUserName.getBackground().clearColorFilter();
+                                    }
+                                }
                             }catch (JSONException e){
                                 e.printStackTrace();
                             }
@@ -135,6 +213,12 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             }
         );
         queue.add(stringRequest);
+    }
+
+    private void toAfterRegister(){
+        Intent intent = new Intent(this, AfterRegister.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

@@ -24,6 +24,7 @@
         <activity android:name=".Welcome"></activity>
         <activity android:name=".ResetPassword"></activity>
         <activity android:name=".Profil"></activity>
+        <activity android:name=".AfterRegister"></activity>
     </application>
 
 </manifest>

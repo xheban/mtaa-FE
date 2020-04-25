@@ -29,12 +29,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button loginBtn;
     private TextView forgotPasswordTextView, registerTextView;
     private ProgressDialog progressDialog;
+    GlobalVariables globals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        GlobalVariables globals = (GlobalVariables) getApplicationContext();
 
         enterUserName = (EditText) findViewById(R.id.loginField);
         enterPassword = (EditText) findViewById(R.id.passwordField);
@@ -49,7 +49,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         registerTextView.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
-
+        globals = (GlobalVariables) getApplicationContext();
     }
 
     private void loginUser(){
@@ -71,19 +71,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             @Override
                             public void onResponse(String response) {
                                 progressDialog.dismiss();
-                                System.out.println(response);
-//                                try{
-//                                    JSONObject res = new JSONObject(response);
-//                                    //Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
-//                                    if(res.getString("response_code").equals("200")){
-////                                        System.out.println(res.getString("response_desc"));
-//                                        toWelocme(userName);
-//                                    }
-//                                    else Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
-//
-//                                }catch (JSONException e){
-//                                    e.printStackTrace();
-//                                }
+                                try{
+                                    JSONObject res = new JSONObject(response);
+                                    JSONObject data = res.getJSONObject("response_desc");
+                                    //Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
+                                    if(res.getString("response_code").equals("200")){
+                                        globals.setUserId(data.getInt("id"));
+                                        toWelocme(userName);
+                                    }
+                                    else Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
+
+                                }catch (JSONException e){
+                                    e.printStackTrace();
+                                }
                             }
                         },
                         new Response.ErrorListener() {
@@ -130,10 +130,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void toWelocme(String userName){
-            Intent intent = new Intent(this, Welcome.class);
-            intent.putExtra("username",userName);
-            startActivity(intent);
-            finish();
+        Intent intent = new Intent(this, Welcome.class);
+        intent.putExtra("username",userName);
+        startActivity(intent);
+        finish();
     }
 
     @Override
