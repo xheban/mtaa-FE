@@ -11,6 +11,7 @@
         android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:name=".GlobalVariables"
         tools:targetApi="m">
         <activity android:name=".Login">
             <intent-filter>
@@ -22,7 +23,11 @@
         <activity android:name=".Register"></activity>
         <activity android:name=".Welcome"></activity>
         <activity android:name=".ResetPassword"></activity>
+<<<<<<< HEAD
         <activity android:name=".AfterRegister"></activity>
+=======
+        <activity android:name=".Profil"></activity>
+>>>>>>> master
     </application>
 
 </manifest>
