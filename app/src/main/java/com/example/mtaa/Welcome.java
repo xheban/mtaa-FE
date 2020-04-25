@@ -86,7 +86,7 @@ public class Welcome<ObjectMapper> extends AppCompatActivity implements AdapterV
         );
         queue.add(stringRequest);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout., cities);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.spinner_item_custom, cities);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citiesSpinner.setAdapter(adapter);
     }

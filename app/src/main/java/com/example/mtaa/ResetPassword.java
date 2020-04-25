@@ -1,11 +1,13 @@
 package com.example.mtaa;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -26,6 +28,7 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
     private Button resetBtn;
     private EditText enterUserName, enterEmail, enterPassword, enterConfirmPaswwrod;
     private ProgressDialog progressDialog;
+    private TextView forgotEmailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,9 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
         enterEmail = (EditText) findViewById(R.id.enterEmail);
 
         progressDialog = new ProgressDialog(this);
+
+        forgotEmailTextView = findViewById(R.id.forgotEmailTextView);
+        forgotEmailTextView.setOnClickListener(this);
     }
 
     private void resetPassword(){
@@ -116,10 +122,21 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
 
     }
 
+    private void toForgotEmail(){
+            Intent intent = new Intent(this, ResetEmail.class);
+            startActivity(intent);
+            //finish();
+        }
+
+
     @Override
     public void onClick(View view) {
         if (view == resetBtn) {
             resetPassword();
+        }
+
+        if(view == forgotEmailTextView){
+            toForgotEmail();
         }
     }
 }

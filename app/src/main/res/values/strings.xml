@@ -24,4 +24,5 @@
     <string name="logo">LOGO</string>
     <string name="cart">košík</string>
     <string name="profil">profil</string>
+    <string name="zabudli_ste_email">"Zabudli ste email ? "</string>
 </resources>
