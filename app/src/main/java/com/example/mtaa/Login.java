@@ -34,6 +34,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        GlobalVariables globals = (GlobalVariables) getApplicationContext();
 
         enterUserName = (EditText) findViewById(R.id.loginField);
         enterPassword = (EditText) findViewById(R.id.passwordField);
@@ -70,17 +71,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             @Override
                             public void onResponse(String response) {
                                 progressDialog.dismiss();
-                                try{
-                                    JSONObject res = new JSONObject(response);
-                                    //Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
-                                    if(res.getString("response_code").equals("200")) toWelocme(userName);
-                                    else Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
-
-                                }catch (JSONException e){
-                                    e.printStackTrace();
-                                }
-
-
+                                System.out.println(response);
+//                                try{
+//                                    JSONObject res = new JSONObject(response);
+//                                    //Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
+//                                    if(res.getString("response_code").equals("200")){
+////                                        System.out.println(res.getString("response_desc"));
+//                                        toWelocme(userName);
+//                                    }
+//                                    else Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
+//
+//                                }catch (JSONException e){
+//                                    e.printStackTrace();
+//                                }
                             }
                         },
                         new Response.ErrorListener() {
@@ -102,7 +105,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         return mRequestBody.getBytes(StandardCharsets.UTF_8);
                     }
                 };
-
                 RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
 
             }
