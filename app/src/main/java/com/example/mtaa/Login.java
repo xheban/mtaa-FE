@@ -74,11 +74,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 progressDialog.dismiss();
                                 try{
                                     JSONObject res = new JSONObject(response);
-                                    Toast.makeText(getApplicationContext(), res.getString("id"), Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), res.getString("id"), Toast.LENGTH_LONG).show();
                                     if(res.getString("response_code").equals("200")){
                                         JSONObject data = res.getJSONObject("response_desc");
                                         globals.setUserId(data.getString("id"));
-                                        toWelocme(userName);
+                                        if(globals.getUserId().equals("1")){
+                                            toAdmin();
+                                        }
+
+                                        else toWelocme(userName);
                                     }
                                     else Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
 
@@ -138,7 +142,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void toAdmin(){
-        Intent intent = new Intent(this, AdminWelcome.class);
+        Intent intent = new Intent(this, TestImage.class);
+        //Intent intent = new Intent(this, AdminWelcome.class);
         startActivity(intent);
         finish();
     }

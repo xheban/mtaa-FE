@@ -51,9 +51,12 @@
     <string name="resturant_photo">Foto:</string>
     <string name="delivery_price">Donaska:</string>
     <string name="delivery_time">Čas:</string>
-
-
-
+    <string name="ingredients_desc">Ingredientce ktoré jedlo obsahuje</string>
+    <string name="weight">Váha</string>
+    <string name="weight_of_food">´Váha porcie v gramoch</string>
+    <string name="id_of_food">ID jedla na zmazanie:</string>
+    <string name="id_to_delete">Id na zmazanie</string>
+    <string name="id_delete_food">Číslo ID</string>
 
 
 </resources>

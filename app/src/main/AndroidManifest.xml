@@ -27,6 +27,12 @@
         <activity android:name=".Profil"></activity>
         <activity android:name=".ResetEmail"></activity>
         <activity android:name=".AdminWelcome"></activity>
+        <activity android:name=".CreateRestaurant"></activity>
+        <activity android:name=".CreateFood"></activity>
+        <activity android:name=".ShowRestaurant"></activity>
+        <activity android:name=".TestImage"></activity>
+
+
     </application>
 
 </manifest>

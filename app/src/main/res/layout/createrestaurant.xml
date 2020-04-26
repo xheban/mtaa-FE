@@ -209,7 +209,7 @@
                 tools:layout_editor_absoluteY="195dp" />
 
             <Spinner
-                android:id="@+id/city_from"
+                android:id="@+id/open_from"
                 android:layout_width="260dp"
                 android:layout_height="30dp"
                 android:textSize="20sp"
@@ -233,7 +233,7 @@
                 tools:layout_editor_absoluteY="195dp" />
 
             <Spinner
-                android:id="@+id/city_to"
+                android:id="@+id/open_to"
                 android:layout_width="260dp"
                 android:layout_height="30dp"
                 android:textSize="20sp"

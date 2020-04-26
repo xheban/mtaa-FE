@@ -134,11 +134,38 @@
                 tools:layout_editor_absoluteY="195dp" />
 
             <EditText
-                android:id="@+id/enterPriceMin"
+                android:id="@+id/enterIngr"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:hint="@string/price_del_euros_min"
+                android:hint="@string/ingredients_desc"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/weight"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <EditText
+                android:id="@+id/enterWeight"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:hint="@string/weight_of_food"
                 android:inputType="number"
                 android:textSize="15sp" />
 
