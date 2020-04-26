@@ -139,7 +139,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:hint="@string/ingredients_desc"
+                android:hint="@string/zadajte_ingrediencie_jedla"
                 android:inputType="number"
                 android:textSize="15sp" />
 
@@ -156,7 +156,7 @@
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
-                android:text="@string/weight"
+                android:text="@string/v_ha"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/užívateľ"
                 tools:layout_editor_absoluteY="195dp" />
@@ -166,7 +166,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
-                android:hint="@string/weight_of_food"
+                android:hint="@string/zadajte_v_hu_v_gramoch"
                 android:inputType="number"
                 android:textSize="15sp" />
 
