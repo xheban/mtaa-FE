@@ -47,6 +47,7 @@ public class CreateFood extends AppCompatActivity implements View.OnClickListene
     private List<foodType> foodTypesArray;
     private List<String> foods;
     private ArrayAdapter<String> adapter;
+    private String restaurantId;
 
     public class foodType {
         public int id;
@@ -61,7 +62,7 @@ public class CreateFood extends AppCompatActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createfood);
-
+        restaurantId = getIntent().getStringExtra("restaurant_id");
         enterName = (EditText) findViewById(R.id.enterName);
         enterPrice = (EditText) findViewById(R.id.enterPrice);
         enterIngr = (EditText) findViewById(R.id.enterIngr);

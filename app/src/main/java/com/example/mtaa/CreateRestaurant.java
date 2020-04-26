@@ -39,7 +39,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
 
     EditText enterName, enterPrice, enterMinPrice, enterTime;
     Spinner citySpinner, openFrom, openTo;
-    Button addFoodBtn, createResBtn;
+    Button  createResBtn;
     ImageView photo;
     Bitmap bitmap;
 
@@ -76,10 +76,8 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
         openFrom = (Spinner) findViewById(R.id.open_from);
         openTo = (Spinner) findViewById(R.id.open_to);
 
-        addFoodBtn = (Button) findViewById(R.id.createFoodBtn);
         createResBtn = (Button) findViewById(R.id.createRestaurantBtn);
 
-        addFoodBtn.setOnClickListener(this);
         createResBtn.setOnClickListener(this);
 
         photo = (ImageView)findViewById(R.id.imageView7);
@@ -150,9 +148,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
     }
 
     private void toAddFood(){
-
             Intent intent = new Intent(this, CreateFood.class);
-            //intent.putExtra("username",userName);
             startActivity(intent);
             //finish();
     }
@@ -241,10 +237,6 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if(view == addFoodBtn){
-            toAddFood();
-        }
-
         if(view == createResBtn){
             createRes();
         }

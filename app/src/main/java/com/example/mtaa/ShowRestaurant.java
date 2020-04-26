@@ -1,5 +1,6 @@
 package com.example.mtaa;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -196,6 +197,7 @@ public class ShowRestaurant extends AppCompatActivity implements View.OnClickLis
         detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vo) {
+                toAddFood(id);
             }
         });
 
@@ -206,6 +208,12 @@ public class ShowRestaurant extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    private void toAddFood(String restaurant_id){
+        Intent intent = new Intent(this, CreateFood.class);
+        intent.putExtra("restaurant_id",restaurant_id);
+        startActivity(intent);
     }
 
 }
