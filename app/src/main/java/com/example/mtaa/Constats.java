@@ -9,6 +9,9 @@ public class Constats {
 //    private static final String ROOT_URL = "http://192.168.0.129/MTAA/"; //JOZO ip
     public static final String REGISTER_URL = ROOT_URL+"createUser.php";
     public static final String LOGIN_URL = ROOT_URL+"login.php";
+    public static final String ADD_TO_CART = ROOT_URL+"addToCart.php";
+    public static final String GET_CART = ROOT_URL+"getCart.php";
+    public static final String DELETE_FROM_CART = ROOT_URL+"deleteFromCart.php";
     public static final String GET_ALL_RESTAURANTS_URL = ROOT_URL+"GetAllRestaurants.php";
     public static final String GET_FOOD_FOR_RESTAURANT = ROOT_URL+"getFoodListByRestaurantID.php";
     public static final String GET_CITIES_URL = ROOT_URL+"getCities.php";

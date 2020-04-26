@@ -1,5 +1,4 @@
 package com.example.mtaa;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -9,19 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.nio.charset.StandardCharsets;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
@@ -74,7 +68,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                 progressDialog.dismiss();
                                 try{
                                     JSONObject res = new JSONObject(response);
-                                    Toast.makeText(getApplicationContext(), res.getString("id"), Toast.LENGTH_LONG).show();
                                     if(res.getString("response_code").equals("200")){
                                         JSONObject data = res.getJSONObject("response_desc");
                                         globals.setUserId(data.getString("id"));

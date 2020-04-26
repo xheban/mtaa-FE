@@ -8,6 +8,28 @@
     android:background="@color/lightBlue">
 
     <ImageView
+        android:id="@+id/cart_rest_det"
+        android:layout_width="48dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart"
+        app:srcCompat="@drawable/cart" />
+
+    <TextView
+        android:id="@+id/cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:text="@string/cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/rest_det_img"
         android:layout_width="184dp"
         android:layout_height="117dp"
@@ -158,13 +180,14 @@
 
     <ScrollView
         android:id="@+id/scroll_view_rest_det"
-        android:layout_width="390dp"
-        android:layout_height="443dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="5dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +196,7 @@
         <LinearLayout
             android:id="@+id/main_restaurant_detail_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="left"
             android:orientation="vertical" />
     </ScrollView>

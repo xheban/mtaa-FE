@@ -87,7 +87,15 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         adapter = new ArrayAdapter<String>(this,R.layout.spinner_item_custom, cities);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citiesSpinner.setAdapter(adapter);
-        citiesSpinner.setSelection(adapter.getPosition("Bratislava"));
+
+        ImageView cartImage = findViewById(R.id.cart_in_rest_list);
+        cartImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vo) {
+                goToCart();
+            }
+        });
+
     }
 
     @Override
@@ -189,6 +197,11 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         intent.putExtra("openFrom",openFrom);
         intent.putExtra("openTo",openTo);
         intent.putExtra("rating",rating);
+        startActivity(intent);
+    }
+
+    public void goToCart(){
+        Intent intent = new Intent(this, Cart.class);
         startActivity(intent);
     }
 }
