@@ -75,7 +75,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                                     JSONObject res = new JSONObject(response);
                                     //Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
                                     if(res.getString("response_code").equals("200")){
-                                        globals.setUserId(res.getString("response_desc"));
+                                        JSONObject data = res.getJSONObject("response_desc");
+                                        globals.setUserId(data.getString("id"));
                                         toWelocme(userName);
                                     }
                                     else Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
