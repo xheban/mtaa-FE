@@ -161,40 +161,40 @@ public class ResetPassword extends AppCompatActivity implements View.OnClickList
                 final String mRequestBody = jsonBody.toString();
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, Constats.RESSET_PASSWORD_URL,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                progressDialog.dismiss();
-                                try {
-                                    JSONObject res = new JSONObject(response);
-                                    System.out.println(res);
-                                    if (res.getString("response_code").equals("200")) {
-                                        Toast.makeText(getApplicationContext(), "Heslo úspešne zmenené!", Toast.LENGTH_LONG).show();
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            progressDialog.dismiss();
+                            try {
+                                JSONObject res = new JSONObject(response);
+                                System.out.println(res);
+                                if (res.getString("response_code").equals("200")) {
+                                    Toast.makeText(getApplicationContext(), "Heslo úspešne zmenené!", Toast.LENGTH_SHORT).show();
+                                    enterUserName.getBackground().clearColorFilter();
+                                    finish();
+                                } else {
+                                    if(res.getString("response_desc").equals("!exist")){
+                                        enterUserName.setError("Zadané užívateľské meno neexistuje");
+                                        enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
                                         enterUserName.getBackground().clearColorFilter();
-                                        finish();
-                                    } else {
-                                        if(res.getString("response_desc").equals("!exist")){
-                                            enterUserName.setError("Kombinácia daného užívateľského mena a emailu neexistuje");
-                                            enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-                                        }else{
-                                            enterUserName.getBackground().clearColorFilter();
-                                            Toast.makeText(getApplicationContext(), res.getString("Heslo sa nepodarilo zmeniť"), Toast.LENGTH_LONG).show();
-                                        }
+                                        Toast.makeText(getApplicationContext(), res.getString("Heslo sa nepodarilo zmeniť"), Toast.LENGTH_SHORT).show();
                                     }
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
                                 }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        },
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                progressDialog.hide();
-                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                                System.out.println(error);
-                            }
-                        }) {
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.hide();
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            System.out.println(error);
+                        }
+                    }) {
                     @Override
                     public String getBodyContentType() {
                         return "application/json; charset=utf-8";
