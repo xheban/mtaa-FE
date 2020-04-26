@@ -144,7 +144,7 @@ public class RestaurantDetail extends AppCompatActivity{
     public void addToCart(String foodId, final Button addToCart){
         addToCart.setEnabled(false);
         String userId = globals.getUserId();
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constats.ADD_TO_CART+"?user_id="+userId+"&food_id="+foodId,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constats.ADD_TO_CART_URL +"?user_id="+userId+"&food_id="+foodId,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

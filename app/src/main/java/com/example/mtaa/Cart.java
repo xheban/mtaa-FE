@@ -1,9 +1,6 @@
 package com.example.mtaa;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -35,7 +32,7 @@ public class Cart  extends AppCompatActivity {
         globals = (GlobalVariables) getApplicationContext();
         order = findViewById(R.id.button_order);
         order.setEnabled(false);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constats.GET_CART+"?user_id="+globals.getUserId(),
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Constats.GET_CART_URL +"?user_id="+globals.getUserId(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -75,6 +72,43 @@ public class Cart  extends AppCompatActivity {
                 }
         );
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+        order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vo) {
+                order.setEnabled(false);
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, Constats.ORDER_URL+"?user_id="+globals.getUserId(),
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                try {
+                                    JSONObject res = new JSONObject(response);
+                                    if(res.getString("response_code").equals("200")){
+                                            sum.setText("- €");
+                                            order.setEnabled(false);
+                                            Toast.makeText(getApplicationContext(),"Objednávka prebehla úspešne", Toast.LENGTH_SHORT).show();
+                                            LinearLayout mainRest = (LinearLayout) findViewById(R.id.main_layout_cart);
+                                            mainRest.removeAllViews();
+                                    }else{
+                                        order.setEnabled(true);
+                                        Toast.makeText(getApplicationContext(),"Nepodarilo sa spraccovať objednávku", Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                                System.out.println(error);
+                            }
+                        }
+                );
+                RequestHandler.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+            }
+        });
     }
 
     public void addFoodToCartLayout(String name, final String price, final String id){
@@ -86,7 +120,7 @@ public class Cart  extends AppCompatActivity {
         deleteFromCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vo) {
-                final StringRequest stringRequest = new StringRequest(Request.Method.DELETE, Constats.DELETE_FROM_CART+"?user_id="+globals.getUserId()+"&food_id="+id,
+                final StringRequest stringRequest = new StringRequest(Request.Method.DELETE, Constats.DELETE_FROM_CART_URL +"?user_id="+globals.getUserId()+"&food_id="+id,
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -105,9 +139,9 @@ public class Cart  extends AppCompatActivity {
                                             sum.setText(textToShow);
                                         }
                                         mainViewToAdd.removeView(addToLayout);
-                                        Toast.makeText(getApplicationContext(),"Jedlo bolo odstránene z košíka", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(),"Jedlo bolo odstránene z košíka", Toast.LENGTH_SHORT).show();
                                     }else{
-                                        Toast.makeText(getApplicationContext(),"Jedlo sa nepodarilo odstrániť z košíka", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(),"Jedlo sa nepodarilo odstrániť z košíka", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();

@@ -56,4 +56,7 @@
     <string name="cena">Cena:</string>
     <string name="vaha">Váha:</string>
     <string name="pridat">Pridať</string>
+    <string name="zmena_emailu">Zmena emailu</string>
+    <string name="zmena_hesla">Zmena hesla</string>
+    <string name="history">História objednávok:</string>
 </resources>

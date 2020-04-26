@@ -16,12 +16,12 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintEnd_toStartOf="@+id/profil_img"
         app:layout_constraintTop_toBottomOf="@+id/cart"
         app:srcCompat="@drawable/cart" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/profil_img"
         android:layout_width="39dp"
         android:layout_height="41dp"
         android:layout_marginTop="10dp"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/city_spinner">
 
         <LinearLayout
-            android:id="@+id/main_restaurant_layout"
+            android:id="@+id/main_history_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="left"
