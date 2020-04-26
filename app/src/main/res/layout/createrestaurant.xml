@@ -10,28 +10,6 @@
     android:background="@color/lightBlue">
 
     <TextView
-        android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/profil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/profil_img"
-        android:layout_width="39dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile"
-        app:srcCompat="@drawable/profile" />
-
-    <TextView
         android:id="@+id/title"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
@@ -43,6 +21,7 @@
         android:text="@string/create_restaurant"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,20 +29,17 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
+        android:layout_width="367dp"
+        android:layout_height="414dp"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
-        android:layout_marginBottom="16dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/title">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,28 +66,28 @@
                 android:textSize="15sp" />
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/city"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:text="@string/mesto"
-            android:textSize="15sp"
-            app:layout_constraintStart_toStartOf="@+id/užívateľ"
-            tools:layout_editor_absoluteY="195dp" />
+            <TextView
+                android:id="@+id/city"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/mesto"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
 
-        <Spinner
-            android:id="@+id/city_spinner_admin"
-            android:layout_width="260dp"
-            android:layout_height="30dp"
-            android:textSize="20sp"
-            ></Spinner>
-    </LinearLayout>
+            <Spinner
+                android:id="@+id/city_spinner_admin"
+                style="@android:style/Widget.Holo.Light.Spinner"
+                android:layout_width="260dp"
+                android:layout_height="30dp"
+                android:textSize="20sp"></Spinner>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -134,7 +110,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
                 android:hint="@string/price_del_euros"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textSize="15sp" />
 
 
@@ -161,7 +137,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
                 android:hint="@string/price_del_euros_min"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textSize="15sp" />
 
 
@@ -188,7 +164,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
                 android:hint="@string/time_del_min"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:textSize="15sp" />
 
 
@@ -211,10 +187,10 @@
 
             <Spinner
                 android:id="@+id/open_from"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="260dp"
                 android:layout_height="30dp"
-                android:textSize="20sp"
-                ></Spinner>
+                android:textSize="20sp"></Spinner>
         </LinearLayout>
 
         <LinearLayout
@@ -235,22 +211,22 @@
 
             <Spinner
                 android:id="@+id/open_to"
+                style="@android:style/Widget.Holo.Light.Spinner"
                 android:layout_width="260dp"
                 android:layout_height="30dp"
-                android:textSize="20sp"
-                ></Spinner>
+                android:textSize="20sp"></Spinner>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="85dp"
             android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/logo"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
+                android:layout_width="141dp"
+                android:layout_height="90dp"
+                android:gravity="center|right"
                 android:text="@string/logo"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/užívateľ"
@@ -258,50 +234,41 @@
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/camera" />
-
-
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_gravity="center">
-    </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_gravity="center">
-
-            <Button
-                android:id="@+id/createRestaurantBtn"
-                android:layout_width="142dp"
+                android:layout_width="178dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:text="@string/create_restaurant"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-            <Button
-                android:id="@+id/createFoodBtn"
-                android:layout_width="142dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:text="@string/create_food"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
+                app:srcCompat="@drawable/addphoto" />
 
         </LinearLayout>
 
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/createRestaurantBtn"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="220dp"
+        android:layout_marginRight="220dp"
+        android:text="@string/create_restaurant"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/peach"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <Button
+        android:id="@+id/createFoodBtn"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:text="@string/create_food"
+        android:background="@color/peach"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
