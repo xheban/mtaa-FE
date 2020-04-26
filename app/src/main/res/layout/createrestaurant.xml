@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/createRestaurant"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16sp"
+    tools:context=".CreateRestaurant">
+
+    <TextView
+        android:id="@+id/profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/profil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="39dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile"
+        app:srcCompat="@drawable/user" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="209dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="@string/create_restaurant"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/meno"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <EditText
+                android:id="@+id/enterName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:hint="@string/zadajte_meno"
+                android:inputType="textPersonName"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="@string/mesto"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/užívateľ"
+            tools:layout_editor_absoluteY="195dp" />
+
+        <Spinner
+            android:id="@+id/city_spinner"
+            android:layout_width="260dp"
+            android:layout_height="30dp"
+            android:textSize="20sp"
+            ></Spinner>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/priceDelivery"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/price_del"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <EditText
+                android:id="@+id/enterPrice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:hint="@string/price_del_euros"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/priceDeliveryMin"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/price_min"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <EditText
+                android:id="@+id/enterPriceMin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:hint="@string/price_del_euros_min"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/timeDelivery"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/time_del"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <EditText
+                android:id="@+id/enterTime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.5"
+                android:hint="@string/time_del_min"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/openFrom"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/openFrom"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <Spinner
+                android:id="@+id/city_from"
+                android:layout_width="260dp"
+                android:layout_height="30dp"
+                android:textSize="20sp"
+                ></Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/openTo"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/openTo"
+                android:textSize="15sp"
+
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <Spinner
+                android:id="@+id/city_to"
+                android:layout_width="260dp"
+                android:layout_height="30dp"
+                android:textSize="20sp"
+                ></Spinner>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/logo"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/logo"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="@+id/užívateľ"
+                tools:layout_editor_absoluteY="195dp" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/camera" />
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_gravity="center">
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/createRestaurantBtn"
+                android:layout_width="142dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="16dp"
+                android:text="@string/create_restaurant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+            <Button
+                android:id="@+id/createFoodBtn"
+                android:layout_width="142dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="16dp"
+                android:text="@string/create_food"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
