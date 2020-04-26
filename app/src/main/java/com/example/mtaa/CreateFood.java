@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,75 +121,92 @@ public class CreateFood extends AppCompatActivity implements View.OnClickListene
     private void createFood(){
 
             String restaurant_id = "1";
-            String name, price, ingredients, weight, imgstring, type_id;
+            String name, price, ingredients, weight;
+            int type_id;
 
-            //progressDialog.setMessage("Registrujem");
-            //progressDialog.show();
+            name = enterName.getText().toString().trim();
+            price = enterPrice.getText().toString().trim();
+            ingredients = enterIngr.getText().toString().trim();
+            weight = enterWeight.getText().toString().trim();
+            type_id = type_spinner.getSelectedItemPosition();
 
-        JSONObject jsonBody = new JSONObject();
-        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray();
+            final String imgstring = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+        try{
+            JSONObject jsonBody = new JSONObject();
             jsonBody.put("restaurant_id", restaurant_id);
-        } catch (JSONException e) {
+            jsonBody.put("name", name);
+            jsonBody.put("price", price);
+            jsonBody.put("weight", weight);
+            jsonBody.put("photo", imgstring);
+            jsonBody.put("type_id", type_id);
+            jsonBody.put("ingredients", ingredients);
+
+
+            final String mRequestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constats.CREATE_FOOD_URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //progressDialog.dismiss();
+                            try{
+                                JSONObject res = new JSONObject(response);
+                                int response_code = res.getInt("response_code");
+                                if(response_code == 200) {
+                                    //Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                                if(response_code == 400){
+                                    JSONObject data = res.getJSONObject("response_desc");
+                                    Toast.makeText(getApplicationContext(), res.getString("response_desc"), Toast.LENGTH_LONG).show();
+                                    if(data.getBoolean("email")){
+                                        //enterEmail.setError("Tento email je už používaný");
+                                        //enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        //enterEmail.getBackground().clearColorFilter();
+                                    }
+
+                                    if(data.getBoolean("username")){
+                                        //enterUserName.setError("Toto užívateľské meno je už obsadené");
+                                        //enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        //enterUserName.getBackground().clearColorFilter();
+                                    }
+                                }
+                            }catch (JSONException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //progressDialog.hide();
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            System.out.println(error);
+                        }
+                    }){
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public byte[] getBody() {
+                    return mRequestBody.getBytes(StandardCharsets.UTF_8);
+                }
+            };
+            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+        }
+        catch (JSONException e) {
             e.printStackTrace();
         }
-        //jsonBody.put("name", name);
-        //jsonBody.put("lastname", lastName);
-        //jsonBody.put("email", email);
-        //jsonBody.put("password", password);
-        final String mRequestBody = jsonBody.toString();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Constats.REGISTER_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        //progressDialog.dismiss();
-                        try{
-                            JSONObject res = new JSONObject(response);
-                            int response_code = res.getInt("response_code");
-                            if(response_code == 200) {
-                                //toAfterRegister();
-                            }
-                            if(response_code == 400){
-                                JSONObject data = res.getJSONObject("response_desc");
-                                if(data.getBoolean("email")){
-                                    //enterEmail.setError("Tento email je už používaný");
-                                    //enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-                                }else{
-                                    //enterEmail.getBackground().clearColorFilter();
-                                }
-
-                                if(data.getBoolean("username")){
-                                    //enterUserName.setError("Toto užívateľské meno je už obsadené");
-                                    //enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-                                }else{
-                                    //enterUserName.getBackground().clearColorFilter();
-                                }
-                            }
-                        }catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //progressDialog.hide();
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                        System.out.println(error);
-                    }
-                }){
-            @Override
-            public String getBodyContentType() {
-                return "application/json; charset=utf-8";
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public byte[] getBody() {
-                return mRequestBody.getBytes(StandardCharsets.UTF_8);
-            }
-        };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
 
     }
 

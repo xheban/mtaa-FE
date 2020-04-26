@@ -6,6 +6,7 @@ public class GlobalVariables extends Application {
 
     private String userId;
 
+
     public String getUserId() {
         return userId;
     }

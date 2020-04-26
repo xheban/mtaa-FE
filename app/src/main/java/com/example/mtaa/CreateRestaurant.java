@@ -43,6 +43,8 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
     ImageView photo;
     Bitmap bitmap;
 
+    public int createdFood = 0;
+
     int PICK_IMAGE_REQUEST = 111;
 
     private List<City> citiesArray;
