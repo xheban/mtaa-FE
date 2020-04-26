@@ -158,13 +158,14 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
     private void createRes(){
 
         final String food_id  = "1";
-        String name, delivery, min_price;
+        String name, delivery_time, min_price, delivery_price;
         int city_id;
         String from,to;
 
         name = enterName.getText().toString().trim();
-        delivery = enterTime.getText().toString().trim();
-        min_price = enterPrice.getText().toString().trim();
+        delivery_time = enterTime.getText().toString().trim();
+        delivery_price = enterPrice.getText().toString().trim();
+        min_price = enterMinPrice.getText().toString().trim();
 
         city_id = citySpinner.getSelectedItemPosition();
         from = openFrom.getSelectedItem().toString();
@@ -179,9 +180,10 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("food_id", food_id);
             jsonBody.put("name", name);
-            jsonBody.put("delivery", delivery);
+            jsonBody.put("delivery_price", delivery_price);
+            jsonBody.put("delivery_time", delivery_time);
             jsonBody.put("min_price", min_price);
-            jsonBody.put("photo", imgstring);
+            jsonBody.put("photo", "");
             jsonBody.put("city_id", city_id);
             jsonBody.put("from", from);
             jsonBody.put("to",to);
