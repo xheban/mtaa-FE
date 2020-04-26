@@ -30,4 +30,9 @@
     <string name="min_n_kup">Min. nákup:</string>
     <string name="delivery_time">Čas doručenia:</string>
     <string name="delivery_price">Cena doručenia:</string>
+    <string name="otvoren_od">Otvorené od:</string>
+    <string name="rating">Hodnotenie</string>
+    <string name="cena">Cena:</string>
+    <string name="vaha">Váha:</string>
+    <string name="pridat">Pridať</string>
 </resources>

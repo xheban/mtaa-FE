@@ -1,8 +1,10 @@
 package com.example.mtaa;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,8 +22,6 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,12 +115,15 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
                                                 restaurant.getString("delivery_price")+" €",
                                                 restaurant.getString("min_price")+" €",
                                                 restaurant.getString("delivery_time")+" min",
-                                                restaurant.getString("photo"));
+                                                restaurant.getString("photo"),
+                                                restaurant.getString("id"),
+                                                restaurant.getString("open_from"),
+                                                restaurant.getString("open_to"),
+                                                restaurant.getString("rating"));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
                                 }
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -139,8 +142,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         }
     }
 
-    public void addRestaurantToLayout(String name, String types, String del_price, String min_buy, String delivery_time, String photo){
-
+    public void addRestaurantToLayout(final String name, final String types, final String del_price, final String min_buy, final String delivery_time, final String photo, final String id, final String openFrom, final String openTo, final String rating){
 
         mainViewToAdd = findViewById(R.id.main_restaurant_layout);
         LinearLayout addToLayout = (LinearLayout) View.inflate(this,R.layout.restaurant_preview,null);
@@ -150,6 +152,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         ((TextView) addToLayout.findViewById(R.id.min_price_value)).setText(min_buy);
         ((TextView) addToLayout.findViewById(R.id.delivery_time_value)).setText(delivery_time);
         ImageView restPhoto = addToLayout.findViewById(R.id.rest_photo);
+        LinearLayout wrapper = addToLayout.findViewById(R.id.rest_wrapper);
 
         if(photo.length() > 0){
             byte[] imgBytesData = android.util.Base64.decode(photo,Base64.DEFAULT);
@@ -159,6 +162,13 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
             restPhoto.setImageResource(R.drawable.no_image);
         }
 
+        wrapper.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vo) {
+                toRestaurant(name, types, del_price, min_buy, delivery_time, photo, id, openFrom, openTo, rating);
+            }
+        });
+
         mainViewToAdd.addView(addToLayout);
     }
 
@@ -167,4 +177,18 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
 
     }
 
+    private void toRestaurant(String name, String types, String del_price, String min_buy, String delivery_time, String photo, String id, String openFrom, String openTo, String rating) {
+        Intent intent = new Intent(this, RestaurantDetail.class);
+        intent.putExtra("name",name);
+        intent.putExtra("types",types);
+        intent.putExtra("deliveryPrice",del_price);
+        intent.putExtra("minBuy",min_buy);
+        intent.putExtra("deliveryTime",delivery_time);
+        intent.putExtra("photo",photo);
+        intent.putExtra("id",id);
+        intent.putExtra("openFrom",openFrom);
+        intent.putExtra("openTo",openTo);
+        intent.putExtra("rating",rating);
+        startActivity(intent);
+    }
 }
