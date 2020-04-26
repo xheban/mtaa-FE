@@ -1,6 +1,8 @@
 package com.example.mtaa;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +22,7 @@ public class Profile extends AppCompatActivity {
 
     private String userName;
     private TextView userNameTitle;
+    private Button resetPwd, resetEmail;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +31,8 @@ public class Profile extends AppCompatActivity {
         GlobalVariables globals = (GlobalVariables) getApplicationContext();
         userNameTitle = findViewById(R.id.profile_user_name);
         userNameTitle.setText(userName);
+        resetEmail = findViewById(R.id.profile_reset_email);
+        resetPwd = findViewById(R.id.profile_reset_pwd);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, Constats.GET_FOOD_HISTORY_URL +"?user_id="+globals.getUserId(),
                 new Response.Listener<String>() {
@@ -60,6 +65,24 @@ public class Profile extends AppCompatActivity {
                 }
         );
         RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+
+        resetEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vo) {
+                Intent intent = new Intent(getApplicationContext(), ResetEmail.class);
+                startActivity(intent);
+            }
+        });
+
+        resetPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vo) {
+                Intent intent = new Intent(getApplicationContext(), ResetPassword.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     public void addToOrderHistory(String time, String price, JSONArray food){

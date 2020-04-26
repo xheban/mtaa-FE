@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16sp"
-    tools:context=".AdminWelcome">
+    tools:context=".AdminWelcome"
+    android:background="@color/lightBlue">
 
     <TextView
         android:id="@+id/profile"
@@ -28,7 +29,7 @@
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile"
-        app:srcCompat="@drawable/user" />
+        app:srcCompat="@drawable/profile" />
 
     <TextView
         android:id="@+id/title"
