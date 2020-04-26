@@ -135,8 +135,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void toAdmin(){
-        Intent intent = new Intent(this, TestImage.class);
-        //Intent intent = new Intent(this, AdminWelcome.class);
+        //Intent intent = new Intent(this, TestImage.class);
+        Intent intent = new Intent(this, AdminWelcome.class);
         startActivity(intent);
         finish();
     }

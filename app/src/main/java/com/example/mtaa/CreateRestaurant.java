@@ -122,7 +122,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citySpinner.setAdapter(adapter);
 
-        Toast.makeText(getApplicationContext(), cities.size() + " " + citiesArray.size(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), cities.size() + " " + citiesArray.size(), Toast.LENGTH_LONG).show();
 
     }
 

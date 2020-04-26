@@ -19,5 +19,6 @@ public class Constats {
     public static final String GET_CITIES_URL = ROOT_URL+"getCities.php";
     public static final String RESSET_PASSWORD_URL = ROOT_URL+"passwordReset.php";
     public static final String RESSET_EMAIL_URL = ROOT_URL+"emailReset.php";
+    public static final String GET_TYPES_URL = ROOT_URL+"getFoodTypes.php";
 
 }
