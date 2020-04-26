@@ -39,7 +39,7 @@
     <string name="time_del_min">čas doručenia v minútach</string>
     <string name="price_min">Minimálna cena obj.</string>
     <string name="price_del_euros_min">MInimálna cena objednávky</string>
-    <string name="openFrom">Otvorene od</string>
+    <string name="openFrom">Otvorené od</string>
     <string name="openTo">Otvorené do</string>
     <string name="create_food">Pridať jedlo</string>
     <string name="create_food_2">Pridanie jedla</string>
