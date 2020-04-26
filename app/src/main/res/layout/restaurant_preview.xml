@@ -9,6 +9,7 @@
         android:id="@+id/rest_photo"
         android:layout_width="110dp"
         android:layout_height="110dp"
+        android:paddingRight="10dp"
         android:contentDescription="@string/resturant_photo"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
