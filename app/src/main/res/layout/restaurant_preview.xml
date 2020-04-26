@@ -8,15 +8,16 @@
     <ImageView
         android:id="@+id/rest_photo"
         android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:paddingRight="10dp"
+        android:layout_height="120dp"
+        android:background="@drawable/spinner_background"
         android:contentDescription="@string/resturant_photo"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingLeft="10dp">
 
         <TextView
             android:id="@+id/rest_title"
@@ -26,12 +27,16 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <TextView
             android:id="@+id/food_types"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Cestoviny, pizza, Burgre" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +53,7 @@
                 android:id="@+id/delivery_price_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:text="0€" />
         </LinearLayout>
 
@@ -67,7 +72,7 @@
                 android:id="@+id/min_price_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:text="5€" />
         </LinearLayout>
 
@@ -86,7 +91,7 @@
                 android:id="@+id/delivery_time_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
+                android:layout_weight="1.3"
                 android:text="90 min" />
         </LinearLayout>
     </LinearLayout>

@@ -111,7 +111,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
                                     try {
                                         JSONObject restaurant = (JSONObject) data.get(i);
                                         addRestaurantToLayout(restaurant.getString("name"),
-                                                restaurant.getString("food_types"),
+                                                restaurant.getString("food_types")+ "TODO delete",
                                                 restaurant.getString("delivery_price")+" €",
                                                 restaurant.getString("min_price")+" €",
                                                 restaurant.getString("delivery_time")+" min",
@@ -140,11 +140,8 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
     }
 
     public void addRestaurantToLayout(String name, String types, String del_price, String min_buy, String delivery_time, String photo){
-        byte[] imgBytesData = android.util.Base64.decode(photo,Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(imgBytesData, 0, imgBytesData.length);
-//        byte[] imageBytes=Base64.decode(bs64img, Base64.DEFAULT);
-//        InputStream is = new ByteArrayInputStream(imageBytes);
-//        BufferedImage img = ImageIO.read(is);
+
+
         mainViewToAdd = findViewById(R.id.main_restaurant_layout);
         LinearLayout addToLayout = (LinearLayout) View.inflate(this,R.layout.restaurant_preview,null);
         ((TextView) addToLayout.findViewById(R.id.rest_title)).setText(name);
@@ -153,7 +150,15 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         ((TextView) addToLayout.findViewById(R.id.min_price_value)).setText(min_buy);
         ((TextView) addToLayout.findViewById(R.id.delivery_time_value)).setText(delivery_time);
         ImageView restPhoto = addToLayout.findViewById(R.id.rest_photo);
-        restPhoto.setImageBitmap(bitmap);
+
+        if(photo.length() > 0){
+            byte[] imgBytesData = android.util.Base64.decode(photo,Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imgBytesData, 0, imgBytesData.length);
+            restPhoto.setImageBitmap(bitmap);
+        }else{
+            restPhoto.setImageResource(R.drawable.no_image);
+        }
+
         mainViewToAdd.addView(addToLayout);
     }
 
