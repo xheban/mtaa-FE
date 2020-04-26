@@ -70,7 +70,6 @@ public class CreateFood extends AppCompatActivity implements View.OnClickListene
         createFoodBtn = (Button) findViewById(R.id.createFoodBtn);
         createFoodBtn.setOnClickListener(this);
 
-        backBtn = (Button) findViewById(R.id.backBtn);
         backBtn.setOnClickListener(this);
 
         imageView = (ImageView) findViewById(R.id.imageView7);
