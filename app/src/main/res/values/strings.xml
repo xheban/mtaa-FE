@@ -59,4 +59,9 @@
     <string name="zmena_emailu">Zmena emailu</string>
     <string name="zmena_hesla">Zmena hesla</string>
     <string name="history">História objednávok:</string>
+    <string name="ingredients_desc">Igrediencie jedla</string>
+    <string name="weight">Váha</string>
+    <string name="weight_of_food">Zadajte váhu porcie v gramoch</string>
+    <string name="id_to_delete">W/e</string>
+    <string name="id_delete_food">w/e</string>
 </resources>
