@@ -10,28 +10,6 @@
     android:background="@color/lightBlue">
 
     <TextView
-        android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/profil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/profil_img"
-        android:layout_width="39dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile"
-        app:srcCompat="@drawable/profile" />
-
-    <TextView
         android:id="@+id/title"
         android:layout_width="209dp"
         android:layout_height="wrap_content"
@@ -50,8 +28,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
+        android:layout_width="373dp"
+        android:layout_height="351dp"
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="40dp"
@@ -89,7 +67,6 @@
                 android:inputType="textPersonName"
                 android:textSize="15sp" />
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -174,43 +151,39 @@
         </LinearLayout>
 
 
-
-
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/type"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/type"
                 android:textSize="15sp"
-
+                android:gravity="center|left"
                 app:layout_constraintStart_toStartOf="@+id/užívateľ"
                 tools:layout_editor_absoluteY="195dp" />
 
             <Spinner
                 android:id="@+id/type_spinner"
                 android:layout_width="260dp"
-                android:layout_height="30dp"
-                android:textSize="20sp"
-                ></Spinner>
+                android:layout_height="match_parent"
+                android:textSize="20sp"></Spinner>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
+            android:layout_height="106dp"
             android:layout_gravity="center">
 
             <TextView
                 android:id="@+id/logo"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
+                android:layout_width="128dp"
+                android:layout_height="80dp"
+                android:gravity="center|right"
                 android:text="@string/logo"
                 android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/užívateľ"
@@ -218,42 +191,9 @@
 
             <ImageView
                 android:id="@+id/imageView7"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/camera" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_gravity="center">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_gravity="center">
-
-            <Button
-                android:id="@+id/backBtn"
-                android:layout_width="142dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:text="@string/back"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-            <Button
-                android:id="@+id/createFoodBtn"
-                android:layout_width="142dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="16dp"
-                android:text="@string/create_food"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                app:srcCompat="@drawable/addphoto" />
 
 
         </LinearLayout>
@@ -261,7 +201,21 @@
 
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/createFoodBtn"
+        android:layout_width="177dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:background="@color/peach"
+        android:text="@string/create_food"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

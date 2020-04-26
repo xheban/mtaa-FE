@@ -183,7 +183,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
             jsonBody.put("delivery_price", delivery_price);
             jsonBody.put("delivery_time", delivery_time);
             jsonBody.put("min_price", min_price);
-            jsonBody.put("photo", "");
+            jsonBody.put("photo", imgstring);
             jsonBody.put("city_id", city_id);
             jsonBody.put("from", from);
             jsonBody.put("to",to);
@@ -198,7 +198,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
                                 JSONObject res = new JSONObject(response);
                                 int response_code = res.getInt("response_code");
                                 if(response_code == 200) {
-                                    Toast.makeText(getApplicationContext(), "Reštaurícia úspešne vytvorená", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Reštaurácia úspešne vytvorená", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                                 if(response_code == 400){
