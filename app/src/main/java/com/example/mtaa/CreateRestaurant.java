@@ -173,7 +173,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] imageBytes = baos.toByteArray();
-        final String imgstring = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        final String imgstring = android.util.Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
         try{
             JSONObject jsonBody = new JSONObject();
@@ -192,29 +192,15 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            //progressDialog.dismiss();
                             try{
                                 JSONObject res = new JSONObject(response);
                                 int response_code = res.getInt("response_code");
                                 if(response_code == 200) {
-                                    //Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Reštaurícia úspešne vytvorená", Toast.LENGTH_SHORT).show();
                                     finish();
                                 }
                                 if(response_code == 400){
-                                    JSONObject data = res.getJSONObject("response_desc");
-                                    if(data.getBoolean("email")){
-                                        //enterEmail.setError("Tento email je už používaný");
-                                        //enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-                                    }else{
-                                        //enterEmail.getBackground().clearColorFilter();
-                                    }
-
-                                    if(data.getBoolean("username")){
-                                        //enterUserName.setError("Toto užívateľské meno je už obsadené");
-                                        //enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-                                    }else{
-                                        //enterUserName.getBackground().clearColorFilter();
-                                    }
+                                    Toast.makeText(getApplicationContext(), "Reštauráciu sa nepodarilo vytvoriť", Toast.LENGTH_SHORT).show();
                                 }
                             }catch (JSONException e){
                                 e.printStackTrace();
@@ -224,7 +210,6 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            //progressDialog.hide();
                             Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                             System.out.println(error);
                         }
