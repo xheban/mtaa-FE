@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,7 +30,8 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
     private Spinner citiesSpinner;
     private LinearLayout mainViewToAdd;
     private ArrayAdapter<String> adapter;
-    GlobalVariables globals;
+    private GlobalVariables globals;
+    private String userName;
 
     public class City {
         public int id;
@@ -47,7 +47,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome);
-        String Name = getIntent().getStringExtra("username");
+        userName = getIntent().getStringExtra("username");
         globals = (GlobalVariables) getApplicationContext();
         citiesSpinner = findViewById(R.id.city_spinner);
         citiesSpinner.setOnItemSelectedListener(this);
@@ -87,7 +87,23 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         adapter = new ArrayAdapter<String>(this,R.layout.spinner_item_custom, cities);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citiesSpinner.setAdapter(adapter);
-        citiesSpinner.setSelection(adapter.getPosition("Bratislava"));
+
+        ImageView cartImage = findViewById(R.id.cart_in_rest_list);
+        cartImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vo) {
+                goToCart();
+            }
+        });
+
+        ImageView profileImage = findViewById(R.id.profil_img);
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vo) {
+                goToProfile();
+            }
+        });
+
     }
 
     @Override
@@ -95,7 +111,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         String valueSelected = cities.get(position);
         for (final City city : citiesArray) {
             if (city.name.equals(valueSelected) && position != 0) {
-                LinearLayout mainRest = (LinearLayout) findViewById(R.id.main_restaurant_layout);
+                LinearLayout mainRest = (LinearLayout) findViewById(R.id.main_history_layout);
                 mainRest.removeAllViews();
                 citiesSpinner.setSelection(position);
                 final String cityId = String.valueOf(city.id);
@@ -144,7 +160,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
 
     public void addRestaurantToLayout(final String name, final String types, final String del_price, final String min_buy, final String delivery_time, final String photo, final String id, final String openFrom, final String openTo, final String rating){
 
-        mainViewToAdd = findViewById(R.id.main_restaurant_layout);
+        mainViewToAdd = findViewById(R.id.main_history_layout);
         LinearLayout addToLayout = (LinearLayout) View.inflate(this,R.layout.restaurant_preview,null);
         ((TextView) addToLayout.findViewById(R.id.rest_title)).setText(name);
         ((TextView) addToLayout.findViewById(R.id.food_types)).setText(types);
@@ -152,7 +168,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         ((TextView) addToLayout.findViewById(R.id.min_price_value)).setText(min_buy);
         ((TextView) addToLayout.findViewById(R.id.delivery_time_value)).setText(delivery_time);
         ImageView restPhoto = addToLayout.findViewById(R.id.rest_photo);
-        LinearLayout wrapper = addToLayout.findViewById(R.id.rest_wrapper);
+        LinearLayout wrapper = addToLayout.findViewById(R.id.history_wrapper);
 
         if(photo.length() > 0){
             byte[] imgBytesData = android.util.Base64.decode(photo,Base64.DEFAULT);
@@ -191,4 +207,16 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         intent.putExtra("rating",rating);
         startActivity(intent);
     }
+
+    public void goToCart(){
+        Intent intent = new Intent(this, Cart.class);
+        startActivity(intent);
+    }
+
+    public void goToProfile(){
+        Intent intent = new Intent(this, Profile.class);
+        intent.putExtra("username",userName);
+        startActivity(intent);
+    }
+
 }

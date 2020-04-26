@@ -24,10 +24,11 @@
         <activity android:name=".Welcome"></activity>
         <activity android:name=".ResetPassword"></activity>
         <activity android:name=".AfterRegister"></activity>
-        <activity android:name=".Profil"></activity>
+        <activity android:name=".Profile"></activity>
         <activity android:name=".ResetEmail"></activity>
         <activity android:name=".RestaurantDetail"></activity>
         <activity android:name=".AdminWelcome"></activity>
+        <activity android:name=".Cart"></activity>
         <activity android:name=".CreateRestaurant"></activity>
         <activity android:name=".CreateFood"></activity>
         <activity android:name=".ShowRestaurant"></activity>
