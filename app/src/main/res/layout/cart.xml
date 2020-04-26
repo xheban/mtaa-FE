@@ -15,7 +15,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="Spolu:"
+        android:text="@string/spolu"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -49,7 +49,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="157dp"
         android:layout_marginRight="157dp"
-        android:text="Košík"
+        android:text="@string/cart"
         android:textSize="28sp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,7 +64,8 @@
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="40dp"
-        android:text="Objednať"
+        android:background="@color/peach"
+        android:text="@string/objedna"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

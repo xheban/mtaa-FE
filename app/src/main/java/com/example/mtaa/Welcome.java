@@ -120,22 +120,23 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
                         @Override
                         public void onResponse(String response) {
                             try {
-
                                 JSONObject res = new JSONObject(response);
                                 JSONArray data = res.getJSONArray("response_desc");
                                 for(int i = 0; i < data.length(); i++) {
                                     try {
                                         JSONObject restaurant = (JSONObject) data.get(i);
-                                        addRestaurantToLayout(restaurant.getString("name"),
-                                                restaurant.getString("food_types")+ "TODO delete",
-                                                restaurant.getString("delivery_price")+" €",
-                                                restaurant.getString("min_price")+" €",
-                                                restaurant.getString("delivery_time")+" min",
-                                                restaurant.getString("photo"),
-                                                restaurant.getString("id"),
-                                                restaurant.getString("open_from"),
-                                                restaurant.getString("open_to"),
-                                                restaurant.getString("rating"));
+                                        if(!restaurant.getString("food_types").isEmpty()){
+                                            addRestaurantToLayout(restaurant.getString("name"),
+                                            restaurant.getString("food_types"),
+                                            restaurant.getString("delivery_price")+" €",
+                                            restaurant.getString("min_price")+" €",
+                                            restaurant.getString("delivery_time")+" min",
+                                            restaurant.getString("photo"),
+                                            restaurant.getString("id"),
+                                            restaurant.getString("open_from"),
+                                            restaurant.getString("open_to"),
+                                            restaurant.getString("rating"));
+                                        }
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
