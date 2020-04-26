@@ -64,4 +64,10 @@
     <string name="weight_of_food">Zadajte váhu porcie v gramoch</string>
     <string name="id_to_delete">W/e</string>
     <string name="id_delete_food">w/e</string>
+    <string name="zadajte_ingrediencie_jedla">Zadajte ingrediencie jedla</string>
+    <string name="zadajte_v_hu_v_gramoch">Zadajte váhu v gramoch</string>
+    <string name="v_ha">Váha</string>
+    <string name="objedna">Objednať</string>
+    <string name="spolu">Spolu:</string>
+    <string name="odobra">Odobrať</string>
 </resources>

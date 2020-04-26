@@ -81,7 +81,7 @@
         android:id="@+id/idTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/id_to_delete"
+        android:text="delete"
         tools:layout_editor_absoluteX="21dp"
         tools:layout_editor_absoluteY="566dp" />
 
@@ -93,7 +93,7 @@
         tools:layout_editor_absoluteY="550dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/id_delete_food"
+        android:hint="idTodelete"
         android:inputType="textPersonName"
         android:textSize="15sp"/>
 

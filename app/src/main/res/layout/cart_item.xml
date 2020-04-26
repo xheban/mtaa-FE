@@ -37,7 +37,8 @@
             android:layout_width="110dp"
             android:layout_height="37dp"
             android:layout_marginLeft="10dp"
-            android:text="Odobrať"
+            android:background="@color/peach"
+            android:text="@string/odobra"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="153dp" />
     </LinearLayout>
