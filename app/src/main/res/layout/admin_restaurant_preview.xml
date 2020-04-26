@@ -43,7 +43,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@color/peach"
                 android:gravity="center"
-                android:text="@string/detail"></Button>
+                android:text="Pridať jedlo"></Button>
 
             <Button
                 android:id="@+id/btn_delete"

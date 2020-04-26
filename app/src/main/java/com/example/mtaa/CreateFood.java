@@ -38,7 +38,7 @@ import java.util.List;
 public class CreateFood extends AppCompatActivity implements View.OnClickListener {
 
     EditText enterName, enterPrice, enterIngr, enterWeight;
-    Button createFoodBtn,backBtn;
+    Button createFoodBtn;
     ImageView imageView;
     int PICK_IMAGE_REQUEST = 111;
     Bitmap bitmap;
@@ -69,8 +69,6 @@ public class CreateFood extends AppCompatActivity implements View.OnClickListene
 
         createFoodBtn = (Button) findViewById(R.id.createFoodBtn);
         createFoodBtn.setOnClickListener(this);
-
-        backBtn.setOnClickListener(this);
 
         imageView = (ImageView) findViewById(R.id.imageView7);
         imageView.setOnClickListener(this);
@@ -220,10 +218,6 @@ public class CreateFood extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
-        if(view == backBtn){
-            finish();
-        }
-
         if(view == createFoodBtn){
             createFood();
         }
