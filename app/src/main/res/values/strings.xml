@@ -30,7 +30,7 @@
     <string name="addRestaurant">Pridaj Reštauráciu</string>
     <string name="deleteRestaurant">Zmaž Reštauráciu</string>
     <string name="deleteFood">Zmaž jedlo</string>
-    <string name="showRestaurant">Zobraz reštauráciu</string>
+    <string name="showRestaurant">Zobraz reštaurácie</string>
     <string name="create_restaurant">Vytvorenie reštaurácie</string>
     <string name="mesto">Mesto</string>
     <string name="price_del">Cena doručenia</string>
