@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/city_spinner"
+        android:id="@+id/city_spinner_admin"
         style="@android:style/Widget.Holo.Light.Spinner"
         android:layout_width="174dp"
         android:layout_height="43dp"
@@ -77,10 +77,10 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_spinner">
+        app:layout_constraintTop_toBottomOf="@+id/city_spinner_admin">
 
         <LinearLayout
-            android:id="@+id/main_history_layout"
+            android:id="@+id/main_rest_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="left"

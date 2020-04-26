@@ -106,7 +106,7 @@
             tools:layout_editor_absoluteY="195dp" />
 
         <Spinner
-            android:id="@+id/city_spinner"
+            android:id="@+id/city_spinner_admin"
             android:layout_width="260dp"
             android:layout_height="30dp"
             android:textSize="20sp"

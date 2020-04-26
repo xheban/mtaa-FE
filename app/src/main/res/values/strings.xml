@@ -70,4 +70,7 @@
     <string name="objedna">Objednať</string>
     <string name="spolu">Spolu:</string>
     <string name="odobra">Odobrať</string>
+    <string name="re_tika">Reštika</string>
+    <string name="detail">Detail</string>
+    <string name="odstr_ni">Odstrániť</string>
 </resources>

@@ -49,7 +49,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         setContentView(R.layout.welcome);
         userName = getIntent().getStringExtra("username");
         globals = (GlobalVariables) getApplicationContext();
-        citiesSpinner = findViewById(R.id.city_spinner);
+        citiesSpinner = findViewById(R.id.city_spinner_admin);
         citiesSpinner.setOnItemSelectedListener(this);
         citiesArray =  new ArrayList<City>();
         cities = new ArrayList<String>();
@@ -111,7 +111,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         String valueSelected = cities.get(position);
         for (final City city : citiesArray) {
             if (city.name.equals(valueSelected) && position != 0) {
-                LinearLayout mainRest = (LinearLayout) findViewById(R.id.main_history_layout);
+                LinearLayout mainRest = (LinearLayout) findViewById(R.id.main_rest_layout);
                 mainRest.removeAllViews();
                 citiesSpinner.setSelection(position);
                 final String cityId = String.valueOf(city.id);
@@ -161,7 +161,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
 
     public void addRestaurantToLayout(final String name, final String types, final String del_price, final String min_buy, final String delivery_time, final String photo, final String id, final String openFrom, final String openTo, final String rating){
 
-        mainViewToAdd = findViewById(R.id.main_history_layout);
+        mainViewToAdd = findViewById(R.id.main_rest_layout);
         LinearLayout addToLayout = (LinearLayout) View.inflate(this,R.layout.restaurant_preview,null);
         ((TextView) addToLayout.findViewById(R.id.rest_title)).setText(name);
         ((TextView) addToLayout.findViewById(R.id.food_types)).setText(types);
@@ -169,7 +169,7 @@ public class Welcome extends AppCompatActivity implements AdapterView.OnItemSele
         ((TextView) addToLayout.findViewById(R.id.min_price_value)).setText(min_buy);
         ((TextView) addToLayout.findViewById(R.id.delivery_time_value)).setText(delivery_time);
         ImageView restPhoto = addToLayout.findViewById(R.id.rest_photo);
-        LinearLayout wrapper = addToLayout.findViewById(R.id.history_wrapper);
+        LinearLayout wrapper = addToLayout.findViewById(R.id.wrapper);
 
         if(photo.length() > 0){
             byte[] imgBytesData = android.util.Base64.decode(photo,Base64.DEFAULT);

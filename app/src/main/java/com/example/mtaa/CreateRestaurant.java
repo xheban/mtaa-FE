@@ -3,7 +3,6 @@ package com.example.mtaa;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,7 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +57,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
         enterMinPrice = (EditText) findViewById(R.id.enterPriceMin);
         enterTime = (EditText) findViewById(R.id.enterTime);
 
-        citySpinner = (Spinner) findViewById(R.id.city_spinner);
+        citySpinner = (Spinner) findViewById(R.id.city_spinner_admin);
         openFrom = (Spinner) findViewById(R.id.open_from);
         openTo = (Spinner) findViewById(R.id.open_to);
 
