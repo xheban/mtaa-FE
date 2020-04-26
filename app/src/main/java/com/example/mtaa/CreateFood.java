@@ -123,8 +123,13 @@ public class CreateFood extends AppCompatActivity implements View.OnClickListene
 
             //progressDialog.setMessage("Registrujem");
             //progressDialog.show();
+
         JSONObject jsonBody = new JSONObject();
-        //jsonBody.put("username", userName);
+        try {
+            jsonBody.put("restaurant_id", restaurant_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         //jsonBody.put("name", name);
         //jsonBody.put("lastname", lastName);
         //jsonBody.put("email", email);

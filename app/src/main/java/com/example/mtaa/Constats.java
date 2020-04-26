@@ -5,8 +5,8 @@ public class Constats {
     //MISO H - IP 192.168.0.116
     //MISO J - IP 192.168.0.129
 
-    private static final String ROOT_URL = "http://192.168.0.116/MTAA/";
-//    private static final String ROOT_URL = "http://192.168.0.129/MTAA/"; //JOZO ip
+    //private static final String ROOT_URL = "http://192.168.0.116/MTAA/";
+    private static final String ROOT_URL = "http://192.168.0.129/MTAA/"; //JOZO ip
     public static final String REGISTER_URL = ROOT_URL+"createUser.php";
     public static final String LOGIN_URL = ROOT_URL+"login.php";
     public static final String ADD_TO_CART_URL = ROOT_URL+"addToCart.php";
@@ -20,5 +20,6 @@ public class Constats {
     public static final String RESSET_PASSWORD_URL = ROOT_URL+"passwordReset.php";
     public static final String RESSET_EMAIL_URL = ROOT_URL+"emailReset.php";
     public static final String GET_TYPES_URL = ROOT_URL+"getFoodTypes.php";
+    public static final String CREATE_RES_URL = ROOT_URL+"create-restaurant.php";
 
 }

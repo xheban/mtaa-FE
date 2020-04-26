@@ -1,7 +1,14 @@
 package com.example.mtaa;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -22,6 +30,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +42,9 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
     Spinner citySpinner, openFrom, openTo;
     Button addFoodBtn, createResBtn;
     ImageView photo;
+    Bitmap bitmap;
 
-    final int CODE_GALERY_REQUEST = 999;
+    int PICK_IMAGE_REQUEST = 111;
 
     private List<City> citiesArray;
     private List<String> cities;
@@ -51,6 +62,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
     }
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.createrestaurant);
 
@@ -64,13 +76,23 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
         openTo = (Spinner) findViewById(R.id.open_to);
 
         addFoodBtn = (Button) findViewById(R.id.createFoodBtn);
-        createResBtn = (Button) findViewById(R.id.createFoodBtn);
+        createResBtn = (Button) findViewById(R.id.createRestaurantBtn);
 
         addFoodBtn.setOnClickListener(this);
         createResBtn.setOnClickListener(this);
 
         photo = (ImageView)findViewById(R.id.imageView7);
-        photo.setOnClickListener(this);
+        photo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(Intent.createChooser(intent, "Select Image"), PICK_IMAGE_REQUEST);
+            }
+        });
 
         String[] values = new String[]{
           "01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00",
@@ -134,10 +156,129 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
             //finish();
     }
 
+    private void createRes(){
+
+        final String food_id  = "1";
+        String name, delivery, min_price;
+        int city_id;
+        String from,to;
+
+        name = enterName.getText().toString().trim();
+        delivery = enterTime.getText().toString().trim();
+        min_price = enterPrice.getText().toString().trim();
+
+        city_id = citySpinner.getSelectedItemPosition();
+        from = openFrom.getSelectedItem().toString();
+        to = openTo.getSelectedItem().toString();
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        final String imgstring = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+        try{
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("food_id", food_id);
+            jsonBody.put("name", name);
+            jsonBody.put("delivery", delivery);
+            jsonBody.put("min_price", min_price);
+            jsonBody.put("photo", imgstring);
+            jsonBody.put("city_id", city_id);
+            jsonBody.put("from", from);
+            jsonBody.put("to",to);
+
+            final String mRequestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, Constats.CREATE_RES_URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            //progressDialog.dismiss();
+                            try{
+                                JSONObject res = new JSONObject(response);
+                                int response_code = res.getInt("response_code");
+                                if(response_code == 200) {
+                                    //Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_LONG).show();
+                                    finish();
+                                }
+                                if(response_code == 400){
+                                    JSONObject data = res.getJSONObject("response_desc");
+                                    if(data.getBoolean("email")){
+                                        //enterEmail.setError("Tento email je už používaný");
+                                        //enterEmail.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        //enterEmail.getBackground().clearColorFilter();
+                                    }
+
+                                    if(data.getBoolean("username")){
+                                        //enterUserName.setError("Toto užívateľské meno je už obsadené");
+                                        //enterUserName.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                                    }else{
+                                        //enterUserName.getBackground().clearColorFilter();
+                                    }
+                                }
+                            }catch (JSONException e){
+                                e.printStackTrace();
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            //progressDialog.hide();
+                            Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                            System.out.println(error);
+                        }
+                    }){
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+                @Override
+                public byte[] getBody() {
+                    return mRequestBody.getBytes(StandardCharsets.UTF_8);
+                }
+            };
+            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
     @Override
     public void onClick(View view) {
         if(view == addFoodBtn){
             toAddFood();
+        }
+
+        if(view == createResBtn){
+            createRes();
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+
+            try {
+                //getting image from gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+
+                //Setting image to ImageView
+                photo.setImageBitmap(bitmap);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
