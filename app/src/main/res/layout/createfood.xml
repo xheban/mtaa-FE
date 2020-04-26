@@ -140,7 +140,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.5"
                 android:hint="@string/zadajte_ingrediencie_jedla"
-                android:inputType="number"
                 android:textSize="15sp" />
 
 

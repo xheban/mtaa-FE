@@ -43,6 +43,8 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
     ImageView photo;
     Bitmap bitmap;
 
+    public int createdFood = 0;
+
     int PICK_IMAGE_REQUEST = 111;
 
     private List<City> citiesArray;
@@ -183,7 +185,7 @@ public class CreateRestaurant extends AppCompatActivity implements View.OnClickL
             jsonBody.put("delivery_price", delivery_price);
             jsonBody.put("delivery_time", delivery_time);
             jsonBody.put("min_price", min_price);
-            jsonBody.put("photo", "");
+            jsonBody.put("photo", imgstring);
             jsonBody.put("city_id", city_id);
             jsonBody.put("from", from);
             jsonBody.put("to",to);
