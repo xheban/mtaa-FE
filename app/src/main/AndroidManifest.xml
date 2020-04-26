@@ -26,6 +26,7 @@
         <activity android:name=".AfterRegister"></activity>
         <activity android:name=".Profil"></activity>
         <activity android:name=".ResetEmail"></activity>
+        <activity android:name=".AdminWelcome"></activity>
     </application>
 
 </manifest>

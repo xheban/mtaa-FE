@@ -47,4 +47,13 @@
     <string name="ingredients">Ingrediencie</string>
     <string name="type">Typ</string>
     <string name="back">Spat</string>
+    <string name="min_n_kup">Min. nákup:</string>
+    <string name="resturant_photo">Foto:</string>
+    <string name="delivery_price">Donaska:</string>
+    <string name="delivery_time">Čas:</string>
+
+
+
+
+
 </resources>
